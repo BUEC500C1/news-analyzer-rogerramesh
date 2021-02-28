@@ -50,5 +50,20 @@ def upload_file():
             return redirect(request.url)
 
 
+@app.route('/') 
+def parse_doc():
+    path = os.getcwd() 
+    print("Current Directory", path)
+    newpath = "/Users/rogerramesh/GitHub/news-analyzer-rogerramesh/uploads"
+    os.chdir(newpath)
+    retval = os.getcwd()
+
+    print("Current Directory",retval)
+    file1 = open("data.txt") 
+  
+    # Reading from file 
+    print(file1.read())
+    return render_template('resuslt.html')
+
 if __name__ == "__main__":
     app.run(host = '127.0.0.1',port = 5000, debug = False)
