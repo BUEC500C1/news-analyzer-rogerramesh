@@ -87,7 +87,7 @@ def parse_doc():
             
                 #print("this is page " + str(i)) 
         Text = str(PageObj.extractText())
-        f.write("Page " +str(i) + Text)
+        f.write("!!Page " +str(i) +" !!" + Text)
         f.write("\n")
         f.close()
       
