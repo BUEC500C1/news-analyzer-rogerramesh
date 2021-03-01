@@ -50,7 +50,7 @@ def upload_file():
             return redirect(request.url)
 
 
-@app.route('/') 
+@app.route('/parse', methods=['POST']) 
 def parse_doc():
     path = os.getcwd() 
     print("Current Directory", path)
