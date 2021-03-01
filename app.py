@@ -71,17 +71,20 @@ def parse_doc():
 
 
     counter=0
+    flag=1
 # extract text and do the search
     for i in range(0, NumPages):
         counter = counter+1
         PageObj = object.getPage(i)
         #print("this is page " + str(i)) 
         Text = str(PageObj.extractText())
-        res = "demo" + "file" + str(counter) + ".txt"
+        if (flag==1):
+            res = "demo" + "file" + str(counter) + ".txt"
+            flag = 0
         f = open(res, "a")
         PageObj = object.getPage(i)
-        
-            #print("this is page " + str(i)) 
+            
+                #print("this is page " + str(i)) 
         Text = str(PageObj.extractText())
         f.write("Page " +str(i) + Text)
         f.write("\n")
