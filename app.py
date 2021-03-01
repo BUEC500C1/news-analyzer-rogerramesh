@@ -2,6 +2,9 @@ import os
 from flask import Flask, flash, request, redirect, render_template
 from werkzeug.utils import secure_filename
 import PyPDF2
+from datetime import datetime
+
+now = datetime.now()
 
 app=Flask(__name__)
 
@@ -53,30 +56,37 @@ def upload_file():
 
 @app.route('/parse', methods=['POST']) 
 def parse_doc():
+
     path = os.getcwd() 
     print("Current Directory", path)
     newpath = "/Users/rogerramesh/GitHub/news-analyzer-rogerramesh/uploads"
     os.chdir(newpath)
     retval = os.getcwd()
+    object = PyPDF2.PdfFileReader("sample.pdf")
+
     NumPages = object.getNumPages()
+    
 #print(NumPages)
     String = "The end"
 
 
-
+    counter=0
 # extract text and do the search
     for i in range(0, NumPages):
+        counter = counter+1
         PageObj = object.getPage(i)
         #print("this is page " + str(i)) 
         Text = str(PageObj.extractText())
-        f = open("demofile2.txt", "a")
+        res = "demo" + "file" + str(counter) + ".txt"
+        f = open(res, "a")
         PageObj = object.getPage(i)
+        
             #print("this is page " + str(i)) 
         Text = str(PageObj.extractText())
-        f.write(Text)
+        f.write("Page " +str(i) + Text)
         f.write("\n")
         f.close()
-        
+      
     
     #print("Current Directory",retval)
     #file1 = open("data.txt") 
