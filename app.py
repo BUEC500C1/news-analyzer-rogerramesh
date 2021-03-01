@@ -76,7 +76,9 @@ def parse_doc():
         counter = counter+1
         PageObj = object.getPage(i)
         #print("this is page " + str(i)) 
+    
         Text = str(PageObj.extractText())
+        #creates text file of PDF content
         if (flag==1):
             res = "demo" + "file" + str(counter) + ".txt"
             flag = 0
