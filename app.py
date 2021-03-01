@@ -12,7 +12,7 @@ app.secret_key = "secret key"
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 
 path = os.getcwd()
-# file Upload
+# create folder for file Upload
 UPLOAD_FOLDER = os.path.join(path, 'uploads')
 
 if not os.path.isdir(UPLOAD_FOLDER):
@@ -20,7 +20,7 @@ if not os.path.isdir(UPLOAD_FOLDER):
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-
+#set extensions for valid potential files to be uploaded
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
 
 
@@ -32,7 +32,7 @@ def allowed_file(filename):
 def upload_form():
     return render_template('upload.html')
 
-
+# Method to securely upload files
 @app.route('/', methods=['POST'])
 def upload_file():
     if request.method == 'POST':
@@ -54,6 +54,7 @@ def upload_file():
             return redirect(request.url)
 
 
+#parse potential documents, convert PDF to text format for parsing
 @app.route('/parse', methods=['POST']) 
 def parse_doc():
 
@@ -67,10 +68,8 @@ def parse_doc():
     NumPages = object.getNumPages()
     
 #print(NumPages)
-    String = "The end"
 
-
-    counter=0
+    counter=1
     flag=1
 # extract text and do the search
     for i in range(0, NumPages):
