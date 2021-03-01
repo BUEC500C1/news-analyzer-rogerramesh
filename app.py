@@ -1,6 +1,7 @@
 import os
 from flask import Flask, flash, request, redirect, render_template
 from werkzeug.utils import secure_filename
+import PyPDF2
 
 app=Flask(__name__)
 
@@ -57,12 +58,25 @@ def parse_doc():
     newpath = "/Users/rogerramesh/GitHub/news-analyzer-rogerramesh/uploads"
     os.chdir(newpath)
     retval = os.getcwd()
+    NumPages = object.getNumPages()
+#print(NumPages)
+    String = "The end"
 
-    print("Current Directory",retval)
-    file1 = open("data.txt") 
+
+
+# extract text and do the search
+    for i in range(0, NumPages):
+        PageObj = object.getPage(i)
+        #print("this is page " + str(i)) 
+        Text = str(PageObj.extractText())
+    
+    
+    
+    #print("Current Directory",retval)
+    #file1 = open("data.txt") 
   
     # Reading from file 
-    print(file1.read())
+    #print(file1.read())
     return render_template('result.html')
 
 if __name__ == "__main__":
