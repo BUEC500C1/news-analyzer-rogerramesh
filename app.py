@@ -69,8 +69,14 @@ def parse_doc():
         PageObj = object.getPage(i)
         #print("this is page " + str(i)) 
         Text = str(PageObj.extractText())
-    
-    
+        f = open("demofile2.txt", "a")
+        PageObj = object.getPage(i)
+            #print("this is page " + str(i)) 
+        Text = str(PageObj.extractText())
+        f.write(Text)
+        f.write("\n")
+        f.close()
+        
     
     #print("Current Directory",retval)
     #file1 = open("data.txt") 

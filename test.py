@@ -19,12 +19,19 @@ for i in range(0, NumPages):
     PageObj = object.getPage(i)
     #print("this is page " + str(i)) 
     Text = str(PageObj.extractText())
-    
+    f = open("demofile2.txt", "a")
+    PageObj = object.getPage(i)
+        #print("this is page " + str(i)) 
+    Text = str(PageObj.extractText())
+    f.write(Text)
+    f.write("\n")
+    f.close()
     #print(Text)
     #ResSearch = re.search(String, Text)
     #print(ResSearch)
 
 
+#print(Text)
 #print("Current Directory",retval)
 #file1 = open("data.txt") 
   
